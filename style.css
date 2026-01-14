@@ -1,0 +1,1386 @@
+@font-face {
+  font-family: "Artilux";
+  src: url("Fonts/et-artilux/ETArtilux-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Groovy Pixel";
+  src: url("Fonts/groovy-pixel/Groovy Pixel Demo.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cthulhumbus Arcade";
+  src: url("Fonts/jmh-cthulhumbus-arcade/JMH Cthulhumbus Arcade/JMH Cthulhumbus Arcade.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pixelmax";
+  src: url("Fonts/pixelmax/Pixelmax-Regular.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "RUBBBB";
+  src: url("Fonts/rubber-biscuit/RUBBBB__.TTF") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ================= BASE ================= */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+  font-family: 'Press Start 2P', monospace;
+  image-rendering: pixelated;
+}
+
+/* ================= CRT STRUCTURE ================= */
+main {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  overflow: hidden;
+  transform-origin: center center;
+}
+
+/* ================= CRT POWER ON ================= */
+
+/* Écran éteint */
+main.off {
+  opacity: 0;
+  transform: scaleY(0.02);
+}
+
+/* Phase d’allumage */
+main.power-on {
+  animation: crt-power-on 0.9s ease-out forwards;
+}
+
+/* CRT actif */
+main.on {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Ligne lumineuse */
+main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  transform: scaleY(0.01);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+main.power-on::before {
+  animation: crt-flash-line 0.25s ease-out forwards;
+}
+
+/* ================= KEYFRAMES ================= */
+
+@keyframes crt-power-on {
+  0% { opacity: 0; transform: scaleY(0.02); filter: brightness(3); }
+  40% { opacity: 1; transform: scaleY(1.2); filter: brightness(2); }
+  70% { transform: scaleY(0.95); filter: brightness(1.4); }
+  100% { transform: scaleY(1); filter: none; }
+}
+
+@keyframes crt-flash-line {
+  0% { opacity: 1; transform: scaleY(0.01); }
+  100% { opacity: 0; transform: scaleY(1); }
+}
+
+/* ================= PAGES ================= */
+.page {
+  position: absolute;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.page.active {
+  display: flex;
+}
+
+/* ---------- LOADING ---------- */
+.big-title {
+  font-size: 100px;
+  margin-bottom: 20px;
+  font-family: "RUBBBB";
+  text-align: center;
+  transform: translateY(-100px);
+  color: black;
+}
+
+#loading-screen {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Image en fond (couche basse) */
+#loading-screen::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("Fond/5fef8c521f8b219fbe56f70c2aaa5513.jpg");
+  background-size: cover;
+  background-position: 50% 65%;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+/* Contenu du loading au-dessus de l'image */
+#loading-screen > *{
+  position: relative;
+  z-index: 6;
+}
+
+/* Option rétro : assombrir légèrement pour lisibilité */
+#home-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 0;
+}
+
+/* Le contenu reste au-dessus du fond */
+#home-screen > * {
+  position: relative;
+  z-index: 1;
+}
+
+.loading-bar {
+  width: 300px;
+  height: 20px;
+  border: 2px solid black;
+  transform: translateY(-100px);
+}
+
+.loading-progress {
+  height: 100%;
+  width: 0%;
+  background: black;
+}
+
+/* ---------- HOME ---------- */
+#home-screen{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("Fond/5bb08578de28190cf5f553fd4dd20e95.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.game-header h1 {
+  margin-top: -150px;
+  margin-bottom: -10px;
+  font-size: 50px;
+  font-family: "RUBBBB";
+  text-align: center;
+  color: white;
+}
+
+.game-header h2 {
+  font-family: "RUBBBB";
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.game-description {
+  max-width: 1000px;
+  margin: 0 auto 10px auto; /* centre + espace avant icônes */
+  text-align: center;
+  font-size: 20px;
+  line-height: 1.5;
+  font-family: "Cthulhumbus Arcade";   /*Pixelmax*/
+  color: white;
+}
+
+@keyframes floatIcon {
+  from { transform: translateY(0); }
+  to   { transform: translateY(6px); }
+}
+
+.menu-icons {
+  display: flex;
+  gap: 150px;
+  z-index: 6;
+  position: relative;
+  align-content: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: -150px;
+}
+
+.icon {
+  width: 96px;
+  display: flex;
+  flex-direction: column; /* 👈 empile verticalement */
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px; /* espace entre l’icône et le texte */
+  cursor: pointer;
+}
+
+.icon:nth-child(1) img { animation-duration: 3.2s; }
+.icon:nth-child(2) img { animation-duration: 2.6s; }
+.icon:nth-child(3) img { animation-duration: 2.0s; }
+
+.icon img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  animation: floatIcon 3s ease-in-out infinite alternate;
+}
+
+.icon-projects img {
+  width: 120px;
+  height: 120px;
+}
+
+.icon-contact img {
+  width: 120px;
+  height: 120px;
+}
+
+/* Texte sous l’icône */
+.icon span {
+  display: inline-block;
+  font-size: 20px;
+  font-family: "Pixelmax";
+  color: #fff;
+  text-align: center;
+  line-height: 1.4;
+  letter-spacing: 1px;
+
+  padding: 4px 6px;      /* 👈 réservé dès le départ */
+  box-sizing: border-box;
+}
+
+/* Hover sur TOUT le bloc icon */
+.icon:hover img {
+  filter: invert(1);               /* effet rétro NB */
+}
+
+.icon:hover span {
+  background: #fff;
+  color: #000;
+}
+
+/* ================= ICONES COINS HOME ================= */
+
+.home-corner-icons {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* le conteneur ne bloque rien */
+  z-index: 8; /* au-dessus du background, sous CRT */
+}
+
+/* icône générique */
+.corner-icon {
+  position: absolute;
+  bottom: -120px;
+  width: 56px;
+  height: 56px;
+
+  pointer-events: auto; /* cliquable */
+  cursor: pointer;
+}
+
+/* bas gauche */
+.corner-icon.left {
+  left: 650px;
+}
+
+/* bas droite */
+.corner-icon.right {
+  right: 650px;
+}
+
+/* image */
+.corner-icon img {
+  width: 56px;
+  height: 56px;
+  display: block;
+  image-rendering: pixelated;
+
+  /* float uniquement sur l'image */
+  animation: floatCorner 3s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* hover rétro */
+.corner-icon:hover img{
+  transform: scale(1.1);
+}
+
+/* float des coins (indépendant) */
+@keyframes floatCorner {
+  from { transform: translateY(0); }
+  to   { transform: translateY(5px); }
+}
+
+/* ================= TEXTE SOUS ICÔNES DE COINS ================= */
+
+.corner-icon span {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  font-size: 13px;
+  font-family: "Pixelmax";
+  color: #fff;
+  text-align: center;
+  line-height: 1.4;
+  letter-spacing: 1px;
+
+  padding: 4px 6px;      /* 👈 réservé dès le départ */
+  box-sizing: border-box;
+}
+
+/* ========= STYLE COMMUN (centre + coins) ========= */
+.nav-icon{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.nav-icon img{
+  image-rendering: pixelated;
+}
+
+/* Texte sous icône (commun) */
+.icon-label{
+  display: inline-block;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  line-height: 1.4;
+  letter-spacing: 1px;
+
+  padding: 4px 6px;      /* réserve pour éviter “saut” */
+  box-sizing: border-box;
+}
+
+/* ========= HOVER COMMUN (centre + coins) ========= */
+.nav-icon:hover img{
+  filter: invert(1);
+}
+
+.nav-icon:hover .icon-label{
+  background: #fff;
+  color: #000;
+}
+
+/* ================= POPUP (CORRIGÉ) ================= */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20; /* AU-DESSUS DE TOUT */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup.hidden {
+  display: none;
+}
+
+.popup-content {
+  position: relative;
+  width: 80%;
+  max-width: 1000px;
+  min-height: 60vh;
+  padding: 24px;
+  background: #000;
+  border: 4px solid #fff;
+  color: #fff;
+  font-family: "Cthulhumbus Arcade";
+  text-align: center;
+  z-index: 21;
+}
+
+.popup-content img {
+  width: 120px;
+  margin: 20px 0;
+  image-rendering: pixelated;
+}
+
+/* Bouton fermer */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  width: 42px;
+  height: 42px;
+
+  font-size: 26px;
+  line-height: 42px;
+  text-align: center;
+  background: #000;
+  color: #fff;
+  z-index: 10;
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* ================= CRT POPUP ================= */
+.crt-popup {
+  position: relative;
+  overflow: hidden;
+  filter: contrast(1.1) brightness(1.05);
+  animation: crt-flicker 0.15s infinite;
+}
+
+/* ---------- SCANLINES ANIMÉES ---------- */
+.crt-popup::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.05) 0px,
+    rgba(255,255,255,0.05) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  animation: scanline-move 6s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ---------- GRILLE RGB + DISTORSION ---------- */
+.crt-popup::after {
+  content: "";
+  background: none;
+  animation: none;
+}
+
+/* ---------- CONTENU AU-DESSUS ---------- */
+.crt-popup > * {
+  position: relative;
+  z-index: 4;
+}
+
+/* ---------- BURN-IN PHOSPHORE ---------- */
+.crt-popup .burn {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.08);
+  opacity: 0;
+  animation: burn-in 3s ease-out forwards;
+}
+
+/* ---------- GLITCH OPEN / CLOSE ---------- */
+.popup.glitch-open .crt-popup {
+  transform-origin: top center;
+  animation: glitch-open 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.popup.glitch-close .crt-popup {
+  transform-origin: top center;
+  animation: glitch-close 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ================= KEYFRAMES ================= */
+
+@keyframes scanline-move {
+  from { background-position-y: 0; }
+  to { background-position-y: 100%; }
+}
+
+@keyframes crt-flicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.96; }
+  100% { opacity: 1; }
+}
+
+@keyframes glitch-open {
+  0% { transform: scaleY(0.1) skewX(20deg); opacity: 0; }
+  40% { transform: scaleY(1.2) skewX(-20deg); opacity: 1; }
+  70% { transform: scaleY(0.95) skewX(10deg); }
+  100% { transform: scaleY(1) skewX(0); }
+}
+
+@keyframes glitch-close {
+  0% { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(0); opacity: 0; }
+}
+
+@keyframes burn-in {
+  0% { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+
+/* ================= TEXTE MONOCHROME ================= */
+.text,
+.text span {
+  color: #fff !important;
+  filter: none !important;
+  text-shadow: none !important;
+}
+
+/* ================= RECO CAROUSEL ================= */
+
+.carousel {
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 18px auto 0;
+}
+
+.carousel .arrow {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #fff;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  font-size: 22px;
+}
+
+.carousel .arrow:hover {
+  background: #fff;
+  color: #000;
+}
+
+.carousel-content {
+  position: relative;
+  min-height: 300px;
+  padding: 10px;
+}
+
+.carousel-text {
+  display: none;
+}
+.carousel-text.active {
+  display: block; 
+}
+
+/* Une "Lettre" = une slide */
+.letter {
+  display: none;
+  text-align: left;
+  border: 3px solid #fff;
+  padding: 18px;
+  background: rgba(0,0,0,0.8);
+}
+
+.letter.active {
+  display: block;
+}
+
+.letter h3 {
+  margin: 0 0 10px;
+  font-size: 22px;
+  font-family: "RUBBBB";
+  text-transform: uppercase;
+}
+
+.letter-meta {
+  margin: 0 0 14px;
+  opacity: 0.85;
+  font-size: 14px;
+}
+
+.letter-body {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+  font-family: "Cthulhumbus Arcade";
+}
+
+#reco-popup .letter {
+  max-height: 45vh;
+  overflow-y: auto;
+  padding-right: 14px;
+
+  font-size: 18px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+#reco-popup h2 {
+  font-family: "RUBBBB";
+}
+
+#reco-popup .letter::-webkit-scrollbar {
+  width: 8px;
+}
+
+#reco-popup .letter::-webkit-scrollbar-track {
+  background: #000;
+}
+
+#reco-popup .letter::-webkit-scrollbar-thumb {
+  background: white;
+  border: 2px solid #000;
+}
+
+#reco-popup .letter-body::before {
+  content: "▼";
+  display: block;
+  margin-top: 10px;
+  opacity: 0.5;
+  font-size: 14px;
+}
+
+#canvas {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;              /* ✅ AU-DESSUS de l'image */
+  pointer-events: none;   /* ne bloque jamais les clics */
+}
+
+/* ================= POPUP MES RECOMMANDATIONS ================= */
+
+#reco-popup .popup-content {
+  width: 90%;          /* plus large */
+  max-width: 1400px;   /* limite confortable */
+}
+
+/* ================= POPUP MES PROJETS ================= */
+#projects-popup .popup-content{
+  width: 95%;
+  max-width: 1600px;
+  min-height: 85vh;
+  padding: 0; /* on gère le padding dans le contenu */
+  text-align: left;
+}
+
+/* Fenêtre type "classeur" */
+.projects-window{
+  background: #000;
+}
+
+/* Barre d'onglets (inspirée de ton exemple) */
+.projects-tabs{
+  display: flex;
+  gap: 6px;
+  padding: 10px 10px 0 10px;
+  background: linear-gradient(#cfcfcf, #9f9f9f);
+  border-bottom: 2px solid #000;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.5);
+}
+
+/* Un onglet */
+.proj-tab{
+  appearance: none;
+  border: 2px solid #000;
+  border-bottom: 0;
+  padding: 10px 14px;
+  background: linear-gradient(#e6e6e6, #bdbdbd);
+  color: #000;
+  font-family: "Sys", "Pixelmax", monospace;
+  font-size: 18px;
+  cursor: pointer;
+
+  /* effet "onglet" qui dépasse */
+  transform: translateY(2px);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.7);
+}
+
+.proj-tab:hover{
+  filter: brightness(1.05);
+}
+
+.proj-tab.active{
+  background: linear-gradient(#ffffff, #d7d7d7);
+  transform: translateY(0);
+  position: relative;
+  z-index: 3;
+}
+
+/* Corps de la fenêtre */
+.projects-body{
+  border-top: 0;
+  border: 4px solid #fff; /* garde ton style popup */
+  border-top: 0;
+  padding: 22px;
+  height: calc(85vh - 70px);
+  overflow: auto;
+  background: rgba(0,0,0,0.85);
+}
+
+/* scrollbar rétro */
+#projects-popup .projects-body::-webkit-scrollbar{
+  width: 10px;
+}
+#projects-popup .projects-body::-webkit-scrollbar-track{
+  background: #000;
+}
+#projects-popup .projects-body::-webkit-scrollbar-thumb{
+  background: #fff;
+  border: 2px solid #000;
+}
+
+.proj-panel{
+  display: none;
+}
+.proj-panel.active{
+  display: block;
+}
+
+.proj-title{
+  margin: 0 0 12px;
+  font-size: 34px;
+  font-family: "RUBBBB";
+  text-align: center;
+}
+
+.proj-text{
+  margin: 0 auto 18px auto;
+  max-width: 1200px;
+  font-family: "Cthulhumbus Arcade";
+  font-size: 20px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.proj-gallery{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(240px, 1fr));
+  gap: 16px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.proj-gallery img{
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border: 3px solid #fff;
+  background: #000;
+  image-rendering: auto;
+}
+
+/* ================= VIEWER IMAGE (LIGHTBOX) ================= */
+.img-viewer{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.85);
+  padding: 24px;
+}
+
+.img-viewer.hidden{
+  display: none;
+}
+
+.img-viewer-inner{
+  position: relative;
+  width: min(1100px, 96vw);
+  height: min(90vh, 900px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  border: 4px solid #fff;
+  box-shadow: 0 0 0 3px #000;
+}
+
+#img-viewer-img{
+  max-width: 92vw;
+  max-height: 82vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  image-rendering: auto;
+}
+
+.img-viewer-close{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 42px;
+  height: 42px;
+  font-size: 26px;
+  line-height: 42px;
+  text-align: center;
+  background: #000;
+  color: #fff;
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+
+.img-viewer-close:hover{
+  background: #fff;
+  color: #000;
+}
+
+/* Indique que les images de projets sont cliquables */
+.proj-gallery img{
+  cursor: zoom-in;
+}
+
+/* ===== Fix position croix popup "Mes projets" ===== */
+#projects-popup .close-btn{
+  top: 2px;
+  right: -335px;        /* 🔹 la vraie correction */
+  left: auto;         /* 🔹 empêche tout héritage bizarre */
+}
+
+
+body {
+  background: #1b2838 none repeat scroll 0 0;
+  margin: 0;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+@font-face {
+  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/86186/terminal_copy.ttf);
+  font-family: "Terminal";
+}
+@font-face {
+  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/86186/sys.ttf) format("truetype");
+  font-family: "Sys";
+}
+.screen::before {
+  background: transparent linear-gradient(to bottom, #85908c 0%, #323431 100%) repeat scroll 0 0;
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.scanlines .overlay {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scanlines .overlay::after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 12;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/86186/crt.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  content: "";
+  pointer-events: none;
+}
+.scanlines .overlay::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  content: " ";
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 11;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+.picture {
+  height: 100vh;
+  overflow: hidden;
+  width: 100vw;
+  z-index: -1;
+  transform: scale(0, 0);
+  background: transparent linear-gradient(to bottom, #85908c 0%, #323431 100%) repeat scroll 0 0;
+}
+
+.menu {
+  opacity: 1;
+  background-color: #0069ff;
+  box-sizing: border-box;
+  font-family: "Sys";
+  font-size: 40px;
+  height: auto;
+  text-transform: uppercase;
+  width: 30%;
+  text-shadow: 1px 1px 0 #000000, -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000;
+  filter: blur(1px);
+  color: #fff;
+  -webkit-animation: jerkup 100ms infinite;
+          animation: jerkup 100ms infinite;
+}
+.menu header {
+  color: #e7e05c;
+  margin-bottom: 10px;
+  padding: 5px 15px;
+  -webkit-animation: 5s ease 2000ms normal none infinite running glitch;
+          animation: 5s ease 2000ms normal none infinite running glitch;
+}
+.menu ul {
+  margin: 0;
+  padding: 0;
+  -webkit-animation: 5s ease 2000ms normal none infinite running glitch;
+          animation: 5s ease 2000ms normal none infinite running glitch;
+}
+.menu ul li {
+  box-sizing: border-box;
+  list-style: outside none none;
+  padding: 5px 15px;
+}
+.menu ul li.active {
+  background-color: #1af2ff;
+}
+.menu ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+.menu footer {
+  background-color: #2afd72;
+  margin-top: 10px;
+  padding: 5px 15px;
+  -webkit-animation: 5s ease 2000ms normal none infinite running glitch;
+          animation: 5s ease 2000ms normal none infinite running glitch;
+}
+.menu footer::after {
+  clear: both;
+  content: " ";
+  display: table;
+}
+.menu footer .key {
+  float: left;
+  width: 50%;
+}
+.menu footer .key span {
+  background-color: #0069ff;
+  border: 6px solid #e7e05c;
+  border-radius: 6px;
+  display: inline-block;
+  height: 34px;
+  line-height: 36px;
+  padding-left: 6px;
+}
+.menu footer .key:last-child {
+  text-align: right;
+}
+
+.on .picture {
+  -webkit-animation: 3000ms linear 0ms normal forwards 1 running on;
+          animation: 3000ms linear 0ms normal forwards 1 running on;
+}
+
+.off .picture {
+  -webkit-animation: 750ms cubic-bezier(0.23, 1, 0.32, 1) 0ms normal forwards 1 running off;
+          animation: 750ms cubic-bezier(0.23, 1, 0.32, 1) 0ms normal forwards 1 running off;
+}
+
+.text {
+  color: lime;
+  content: "AV-1";
+  opacity: 0;
+  filter: blur(0.5px);
+  font-family: Sys;
+  font-size: 6vmin;
+  left: 5%;
+  position: absolute;
+  text-shadow: 0 0 3px lime;
+  top: 10%;
+  width: 200px;
+}
+
+.on .text, .on .menu {
+  opacity: 1;
+  transition: opacity 10ms ease 2000ms;
+}
+
+@-webkit-keyframes on {
+  0% {
+    transform: scale(1, 0.8) translate3d(0, 0, 0);
+    filter: brightness(4);
+    opacity: 1;
+  }
+  3.5% {
+    transform: scale(1, 0.8) translate3d(0, 100%, 0);
+  }
+  3.6% {
+    transform: scale(1, 0.8) translate3d(0, -100%, 0);
+    opacity: 1;
+  }
+  9% {
+    transform: scale(1.3, 0.6) translate3d(0, 100%, 0);
+    filter: brightness(4);
+    opacity: 0;
+  }
+  11% {
+    transform: scale(1, 1) translate3d(0, 0, 0);
+    filter: contrast(0) brightness(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1, 1) translate3d(0, 0, 0);
+    filter: contrast(1) brightness(1.2) saturate(1.3);
+    opacity: 1;
+  }
+}
+
+@keyframes on {
+  0% {
+    transform: scale(1, 0.8) translate3d(0, 0, 0);
+    filter: brightness(4);
+    opacity: 1;
+  }
+  3.5% {
+    transform: scale(1, 0.8) translate3d(0, 100%, 0);
+  }
+  3.6% {
+    transform: scale(1, 0.8) translate3d(0, -100%, 0);
+    opacity: 1;
+  }
+  9% {
+    transform: scale(1.3, 0.6) translate3d(0, 100%, 0);
+    filter: brightness(4);
+    opacity: 0;
+  }
+  11% {
+    transform: scale(1, 1) translate3d(0, 0, 0);
+    filter: contrast(0) brightness(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1, 1) translate3d(0, 0, 0);
+    filter: contrast(1) brightness(1.2) saturate(1.3);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes off {
+  0% {
+    transform: scale(1, 1);
+    filter: brightness(1);
+  }
+  40% {
+    transform: scale(1, 0.005);
+    filter: brightness(100);
+  }
+  70% {
+    transform: scale(1, 0.005);
+  }
+  90% {
+    transform: scale(0.005, 0.005);
+  }
+  100% {
+    transform: scale(0, 0);
+  }
+}
+@keyframes off {
+  0% {
+    transform: scale(1, 1);
+    filter: brightness(1);
+  }
+  40% {
+    transform: scale(1, 0.005);
+    filter: brightness(100);
+  }
+  70% {
+    transform: scale(1, 0.005);
+  }
+  90% {
+    transform: scale(0.005, 0.005);
+  }
+  100% {
+    transform: scale(0, 0);
+  }
+}
+.text span {
+  filter: blur(1px);
+  position: absolute;
+}
+
+.text span:nth-child(1) {
+  color: red;
+  margin-left: -2px;
+  filter: blur(2px);
+}
+
+.text span:nth-child(2) {
+  color: lime;
+  margin-left: 2px;
+  filter: blur(2px);
+}
+
+.text span:nth-child(3) {
+  color: blue;
+  position: 20px 0;
+  filter: blur(1px);
+}
+
+.text span:nth-child(4) {
+  color: #fff;
+  filter: blur(1px);
+  text-shadow: 0 0 50px rgba(255, 255, 255, 0.4);
+}
+
+.text span:nth-child(5) {
+  color: rgba(255, 255, 255, 0.1);
+  filter: blur(15px);
+}
+
+.text span {
+  -webkit-animation: blur 30ms infinite, jerk 50ms infinite;
+          animation: blur 30ms infinite, jerk 50ms infinite;
+}
+
+@-webkit-keyframes blur {
+  0% {
+    filter: blur(1px);
+    opacity: 0.8;
+  }
+  50% {
+    filter: blur(1px);
+    opacity: 1;
+  }
+  100% {
+    filter: blur(1px);
+    opacity: 0.8;
+  }
+}
+
+@keyframes blur {
+  0% {
+    filter: blur(1px);
+    opacity: 0.8;
+  }
+  50% {
+    filter: blur(1px);
+    opacity: 1;
+  }
+  100% {
+    filter: blur(1px);
+    opacity: 0.8;
+  }
+}
+@-webkit-keyframes jerk {
+  50% {
+    transform: translateX(1px);
+  }
+  51% {
+    transform: translateX(0);
+  }
+}
+@keyframes jerk {
+  50% {
+    transform: translateX(1px);
+  }
+  51% {
+    transform: translateX(0);
+  }
+}
+@-webkit-keyframes jerkup {
+  0% {
+    transform: translateY(1px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes jerkup {
+  0% {
+    transform: translateY(1px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.text span:nth-child(2) {
+  -webkit-animation: jerkup 1s infinite;
+          animation: jerkup 1s infinite;
+}
+
+.text span:nth-child(3) {
+  -webkit-animation: glitch1 1s infinite;
+          animation: glitch1 1s infinite;
+}
+
+@-webkit-keyframes glitch1 {
+  0% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(0);
+  }
+  31% {
+    transform: translateX(10px);
+  }
+  32% {
+    transform: translateX(0);
+  }
+  98% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(10px);
+  }
+}
+
+@keyframes glitch1 {
+  0% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(0);
+  }
+  31% {
+    transform: translateX(10px);
+  }
+  32% {
+    transform: translateX(0);
+  }
+  98% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(10px);
+  }
+}
+.text span:nth-child(2) {
+  -webkit-animation: glitch2 1s infinite;
+          animation: glitch2 1s infinite;
+}
+
+@-webkit-keyframes glitch2 {
+  0% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(0);
+  }
+  31% {
+    transform: translateX(-10px);
+  }
+  32% {
+    transform: translateX(0);
+  }
+  98% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-10px);
+  }
+}
+
+@keyframes glitch2 {
+  0% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(0);
+  }
+  31% {
+    transform: translateX(-10px);
+  }
+  32% {
+    transform: translateX(0);
+  }
+  98% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-10px);
+  }
+}
+.overlay .text {
+  -webkit-animation: 5s ease 2000ms normal none infinite running glitch;
+          animation: 5s ease 2000ms normal none infinite running glitch;
+}
+
+@-webkit-keyframes glitch {
+  40% {
+    opacity: 1;
+    transform: scale(1, 1);
+    transform: skew(0, 0);
+  }
+  41% {
+    opacity: 0.8;
+    transform: scale(1, 1.2);
+    transform: skew(80deg, 0);
+  }
+  42% {
+    opacity: 0.8;
+    transform: scale(1, 1.2);
+    transform: skew(-50deg, 0);
+  }
+  43% {
+    opacity: 1;
+    transform: scale(1, 1);
+    transform: skew(0, 0);
+  }
+}
+
+@keyframes glitch {
+  40% {
+    opacity: 1;
+    transform: scale(1, 1);
+    transform: skew(0, 0);
+  }
+  41% {
+    opacity: 0.8;
+    transform: scale(1, 1.2);
+    transform: skew(80deg, 0);
+  }
+  42% {
+    opacity: 0.8;
+    transform: scale(1, 1.2);
+    transform: skew(-50deg, 0);
+  }
+  43% {
+    opacity: 1;
+    transform: scale(1, 1);
+    transform: skew(0, 0);
+  }
+}
+

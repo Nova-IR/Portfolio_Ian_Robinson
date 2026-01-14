@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Ian Robinson</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main class="scanlines off">
+  <div class="screen">
+
+    <!-- CANVAS + EFFET CRT -->
+    <canvas id="canvas" class="picture"></canvas>
+
+    <!-- OVERLAY GLOBAL -->
+    <div class="overlay">
+
+      <!-- ========== PAGE 1 : LOADING ========== -->
+      <section id="loading-screen" class="page active">
+        <h1 class="big-title">PORTFOLIO <br> IAN ROBINSON</h1>
+        <div class="loading-bar">
+          <div class="loading-progress"></div>
+        </div>
+      </section>
+
+      <!-- ========== PAGE 2 : ACCUEIL ========== -->
+      <section id="home-screen" class="page">
+        <header class="game-header">
+          <h1>PORTFOLIO</h1>
+          <h2>IAN ROBINSON</h2>
+        </header>
+
+        <p class="game-description">
+          Passionné par les univers numériques et interactifs,<br>
+          ce portfolio rassemble mes travaux et expériences dans des domaines variés tels que la 3D,<br>
+          le level design, le montage vidéo et le développement de sites web.<br>
+          Il reflète mon approche créative, mon goût pour l'expérimentation et mon envie de concevoir des projets cohérents et immersifs.<br>
+          Vous y trouverez également des recommandations de personnes avec qui j'ai travaillé,<br>
+          offrant un regard extérieur sur mon travail et mon professionnalisme.
+        </p>
+
+        <div class="menu-icons">
+          <div class="icon icon-about" id="btn-about">
+            <img src="Icons/32.png" alt="Qui suis-je">
+            <span class="icon-label">Qui suis-je</span>
+          </div>
+
+          <div class="icon icon-projects" id="btn-projects">
+            <img src="Icons/Odds60.png" alt="Mes projets">
+            <span class="icon-label">Mes projets</span>
+          </div>
+
+          <div class="icon icon-contact" id="btn-contact">
+            <img src="Icons/Odds56.png" alt="Mes recommandations">
+            <span class="icon-label">Mes recommandations</span>
+          </div>
+        </div>
+
+        <!-- ICONES FIXES BAS -->
+        <div class="home-corner-icons">
+            
+          <!-- LinkedIn -->
+          <a 
+            href="https://www.linkedin.com/in/ian-robinson-b03842350/"
+            target="_blank"
+            class="corner-icon nav-icon left"
+            aria-label="LinkedIn"
+          >
+            <img src="Icons/linkedin.png" alt="LinkedIn">
+            <span class="icon-label">Mon LinkedIn</span>
+          </a>
+
+          <!-- CV -->
+          <a 
+            href="file:///C:/Users/ianro/Documents/Portfolio/Images/CV.pdf"
+            download
+            class="corner-icon nav-icon right"
+            aria-label="Télécharger mon CV"
+          >
+            <img src="Icons/Treasures57.png" alt="Télécharger mon CV">
+            <span class="icon-label">Mon CV</span>
+          </a>
+        </div>
+
+      </section>
+    </div>
+  </div>
+</main>
+
+<!-- ========== POPUP : QUI SUIS-JE ========== -->
+<div id="about-popup" class="popup hidden">
+  <div class="popup-content crt-popup">
+    <button class="close-btn">X</button>
+    <h2>Qui suis-je ?</h2>
+    <img src="Icons/55b4114bdbc538c7a741c1cfd2b0fe5d.png" alt="illustration">
+    <p>
+      Ian Robinson | 20 ans <br> 
+      <br>
+      Étudiant en deuxième année de BUT MMI (Métiers du Multimédia et de l'Internet) et futur game designer, j'ai débuté mon parcours dans les sciences et l'ingénierie avant de me tourner vers la création numérique, domaine dans lequel je peux pleinement exprimer ma créativité. <br>
+      Passionné par le cinéma, la musique et l'automobile, j'aime découvrir et m'immerger dans des univers riches et immersifs. Curieux, aventureux et méticuleux, j'accorde une importance particulière au sens du détail, essentiel selon moi à la qualité d'un projet. <br>
+      Créatif et doté d'un fort esprit d'équipe, je privilégie le travail collaboratif afin de repousser les limites et de mener mes projets toujours plus loin.
+    </p>
+  </div>
+</div>
+
+<!-- ========== POPUP : MES RECOMMANDATIONS ========== -->
+<div id="reco-popup" class="popup hidden">
+  <div class="popup-content crt-popup">
+    <button class="close-btn">X</button>
+
+    <h2>Mes recommandations</h2>
+
+    <div class="carousel">
+
+      <button class="arrow left">◀</button>
+
+      <div class="carousel-content">
+        <div class="carousel-content">
+          <article class="letter active">
+            <h3>Lettre 1</h3>
+            <p class="letter-meta">— Pascal Pommier, PDG / AKARE sarl</p>
+            <p class="letter-body">
+              Madame, Monsieur,
+              Je vous recommande chaleureusement Monsieur Ian Bobinson, qui a travaillé au sein de notre entreprise en qualité
+              de développeur spécialisé dans la création de séquences de jeux via Unreal Engine.
+              Au cours de son engagement, Ian a démontré un professionnalisme exemplaire et une implication remarquable
+              dans la réalisation de ses missions. Il s'est distingué par une grande qualité de travail, associée à une excellente
+              capacité de collaboration et d'adaptation à notre environnement professionnel. Ses qualités relationnelles,
+              combinées à son approche constructive et son esprit d'équipe, ont considérablement contribué au succès de nos
+              projets communs.
+              Ian s'est montré fiable, rigoureux et attentif aux besoins de ses collègues. C'est un professionnel sur lequel on peut
+              compter, capable de progresser rapidement et d'apporter une contribution significative à tout projet auquel il sera
+              assigné.
+              N'hésitez pas à me contacter si vous souhaitez obtenir des précisions supplémentaires.
+            </p>
+          </article>
+
+          <article class="letter">
+            <h3>Lettre 2</h3>
+            <p class="letter-meta">— Hervé Loreau, Directeur Innovation / FCMS IMMOBILIER TECH/DEV</p>
+            <p class="letter-body">
+              J'ai eu l'occasion de superviser le projet de Ian Robinson chez Figaro Classifieds,
+              lors de son stage dans notre entreprise qu'il a effectué en juillet 2022.
+              Ce stage au sein du département INNOVATION 3D a été l'occasion pour Ian de
+              travailler dans le 1 er groupe de média Français.
+              Le travail de Ian m'a permis de juger de ses qualités : Curieux, attentif et
+              minutieux, Ian a su s'adapter rapidement au sein d'une équipe de
+              développeurs spécialisés Design et 3D.
+              Les personnes travaillant dans mon équipe ont rapidement su estimer sa
+              rigueur et sa motivation qui ont fait de lui un stagiaire efficace.
+              Il a mené à bien son projet d'aménagement immobilier, avec le logiciel
+              HomeByMe.
+              Toutes ces raisons me font croire que Ian sera un élément moteur dans sa
+              formation supérieure et qu'il s'intégrera parfaitement au sein de la vie d'un
+              groupe d'étudiants curieux et motivés.
+            </p>
+          </article>
+
+          <article class="letter">
+            <h3>Lettre 3</h3>
+            <p class="letter-meta">— Tony Zerrouki,  Designer / PDI</p>
+            <p class="letter-body">
+              Nous recommandons vivement  Ian pour son sérieux, son professionnalisme, sa réactivité et sa capacité d'adaptation. Autonome et fiable dans son travail, il a été un précieux atout pour notre société.
+            </p>
+          </article>
+        </div>
+
+      </div>
+
+      <button class="arrow right">▶</button>
+
+    </div>
+  </div>
+</div>
+
+<!-- ========== POPUP : MES PROJETS ========== -->
+<div id="projects-popup" class="popup hidden">
+  <div class="popup-content crt-popup projects-window">
+    <button class="close-btn">X</button>
+
+    <div class="projects-tabs" role="tablist" aria-label="Mes projets">
+      <button class="proj-tab active" role="tab" aria-selected="true" data-target="proj-1">Projet 1</button>
+      <button class="proj-tab" role="tab" aria-selected="false" data-target="proj-2">Projet 2</button>
+      <button class="proj-tab" role="tab" aria-selected="false" data-target="proj-3">Projet 3</button>
+      <button class="proj-tab" role="tab" aria-selected="false" data-target="proj-4">Projet 4</button>
+    </div>
+
+    <div class="projects-body">
+      <!-- ====== PROJET 1 ====== -->
+      <section id="proj-1" class="proj-panel active" role="tabpanel">
+        <h2 class="proj-title">Projet 1 — Aménagement d'intérieur en 3D</h2>
+        <p class="proj-text">
+          Juillet 2022 <br>
+          Conception et modélisation 3D d'un appartement fictif. <br>
+          L'objectif était d'aménager une base d'appartement vide et de la rendre à la fois esthétique et fonctionnelle. <br>
+          Ce projet m'a permis de développer mes compétences de conception d'espace harmonieux et réalistes, de modélisation 3D et en rendu photoréaliste. <br>
+          Il a été réalisé grâce à HomeByMe, un logiciel d'aménagement d'intérieur. <br>
+          Cette réalisation a été effectuée individuellement, dans un contexte professionnel, lors d'un stage chez Propriétés Le Figaro. <br>
+          Voici quelque illustrations de ce projet : 
+        </p>
+
+        <div class="proj-gallery">
+          <img src="Images/3D1.jpg" alt="Projet 1 image 1">
+          <img src="Images/3D2.jpg" alt="Projet 1 image 2">
+          <img src="Images/3D3.jpg" alt="Projet 1 image 3">
+          <img src="Images/3D4.jpg" alt="Projet 1 image 4">
+        </div>
+      </section>
+
+      <!-- ====== PROJET 2 ====== -->
+      <section id="proj-2" class="proj-panel" role="tabpanel">
+        <h2 class="proj-title">Projet 2 — Création d'un niveau de jeu vidéo ultra-réaliste</h2>
+        <p class="proj-text">
+          Juin - Juillet 2025 <br>
+          Conception et construction d'un niveau ultra-réaliste d'un bâtiment abandonné. <br>
+          L'objectif était de créer un environnement immersif et cohérent, à travers l'architecture, l'éclairage et les détails. <br>
+          Ce projet m'a permis de développer mes compétences de level design, de composition spatiale et de gestion de la lumière et des effets (eau, fumée, particules, …). <br>
+          Il a été réalisé grâce à Unreal Engine 5, un logiciel de développement de projet en 3D (jeu vidéo, film, …). <br>
+          Cette réalisation a été effectuée individuellement, dans un contexte personnel, lors de mon temps libre. <br>
+          Voici quelque illustrations de ce projet : 
+        </p>
+
+        <div class="proj-gallery">
+          <img src="Images/Level1.png" alt="Projet 2 image 1">
+          <img src="Images/Level2.png" alt="Projet 2 image 2">
+          <img src="Images/Level3.png" alt="Projet 2 image 3">
+          <img src="Images/Level4.png" alt="Projet 2 image 4">
+        </div>
+      </section>
+
+      <!-- ====== PROJET 3 ====== -->
+      <section id="proj-3" class="proj-panel" role="tabpanel">
+        <h2 class="proj-title">Projet 3 — Développement du site internet de cuisine</h2>
+        <p class="proj-text">
+          Septembre - Janvier 2026 <br>
+          Conception et développement d'un site internet en Javascript, PHP, HTML et CSS. <br>
+          L'objectif était de concevoir et coder de zéro un site communautaire de cuisine qui répertorie différentes recettes inspirées d'animés japonais et permettant de pouvoir noter les recettes, voter pour les prochaines ou encore en ajouter soit même. <br>
+          Ce projet m'a permis de développer mes compétences de développement web dans différents langages ainsi que d'UX et UI design. <br>
+          Il a été réalisé grâce à Visual Studio Code, un logiciel de développement permettant de coder dans une large palette de langages. <br>
+          Il a été aussi réalisé grâce à Figma, un logiciel d'UX et UI design permettant de faire des maquettes. <br>
+          Cette réalisation a été effectuée en groupe de 5, dans un contexte universitaire, lors d'un projet étudiant. <br>
+          Voici quelque illustrations de ce projet : 
+        </p>
+
+        <div class="proj-gallery">
+          <img src="Images/Accueil.png" alt="Projet 3 image 1">
+          <img src="Images/Code PHP.png" alt="Projet 3 image 2">
+          <img src="Images/Code CSS.png" alt="Projet 3 image 3">
+          <img src="Images/Base de données.png" alt="Projet 3 image 4">
+        </div>
+      </section>
+
+      <!-- ====== PROJET 4 ====== -->
+      <section id="proj-4" class="proj-panel" role="tabpanel">
+        <h2 class="proj-title">Projet 4 — Réalisation d'un court métrage</h2>
+        <p class="proj-text">
+          Octobre - Janvier 2026 <br>
+          Écriture, tournage et montage d'un court métrage sur le jeu vidéo. <br>
+          L'objectif était d'écrire et de réaliser un court métrage dans le thème de notre choix en incluant un changement d'univers en passant d'un tournage classique à des incrustations sur fond vert et du Français à l'Anglais. <br>
+          Ce projet m'a permis de développer mes compétences d'écriture narrative, de tournage (cadrage, lumière, son) et de post production (montage, FX, SFX). <br>
+          Il a été réalisé grâce à Adobe Première Pro, un logiciel de montage vidéo. <br>
+          Il a été aussi réalisé grâce à Adobe After Effects, un logiciel de motion design et de FX. <br>
+          Il a été enfin réalisé grâce à Reaper, un logiciel d'édition audio. <br>
+          Cette réalisation a été effectuée en groupe de 5 pour la partie écriture et tournage et individuellement pour la partie montage et editing, dans un contexte universitaire, lors d'un projet étudiant. <br>
+          Voici quelque illustrations de ce projet : 
+
+        </p>
+
+        <div class="proj-gallery">
+          <img src="Images/Première Pro.png" alt="Projet 4 image 1">
+          <img src="Images/SFX.png" alt="Projet 4 image 2">
+          <img src="Images/After Effect.png" alt="Projet 4 image 3">
+          <img src="Images/Storyboard.jpg" alt="Projet 4 image 4">
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- ========== VIEWER IMAGE (LIGHTBOX) ========== -->
+<div id="img-viewer" class="img-viewer hidden" aria-hidden="true">
+  <div class="img-viewer-inner" role="dialog" aria-modal="true" aria-label="Aperçu de l'image">
+    <button class="img-viewer-close" type="button" aria-label="Fermer">X</button>
+    <img id="img-viewer-img" src="" alt="">
+  </div>
+</div>
+
+<script defer src="script.js"></script>
+</body>
+</html>
